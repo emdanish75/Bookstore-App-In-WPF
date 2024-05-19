@@ -14,9 +14,7 @@ using System.Windows.Shapes;
 
 namespace Bookstore_App
 {
-    /// <summary>
-    /// Interaction logic for AdminMenu.xaml
-    /// </summary>
+    
     public partial class AdminMenu : Window
     {
         public AdminMenu()
@@ -35,6 +33,13 @@ namespace Bookstore_App
             MainWindow mainWindow = new MainWindow();
             this.Close();
             mainWindow.Show();
+        }
+
+        private void orderButton_Click(object sender, RoutedEventArgs e)
+        {
+            ViewOrdersAdmin viewOrdersAdmin = new ViewOrdersAdmin();
+            this.Close();
+            viewOrdersAdmin.Show();
         }
     }
 }
