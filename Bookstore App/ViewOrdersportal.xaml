@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bookstore_App"
         mc:Ignorable="d"
-        Title="ViewCustomerDetails" Height="450" Width="800"  WindowStartupLocation="CenterScreen">
+        Title="ViewCustomerDetails" Height="490" Width="800"  WindowStartupLocation="CenterScreen">
     <Grid Background="#FF41CA69">
         <DataGrid Name="CustomersDataGrid" Margin="10,10,10,127" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
@@ -30,6 +30,7 @@
                 </Style>
             </DataGrid.CellStyle>
         </DataGrid>
-        <Button Content="Back" HorizontalAlignment="Center" Margin="0,355,0,0" VerticalAlignment="Top" FontSize="24" Background="#FFB53636" Click="Button_Click_1" Width="168" FontWeight="Bold" Foreground="#FFF1D0D0"/>
+        <Button Content="Back" HorizontalAlignment="Center" Margin="0,415,0,0" VerticalAlignment="Top" FontSize="24" Background="#FFB53636" Click="Button_Click_1" Width="168" FontWeight="Bold" Foreground="#FFF1D0D0"/>
+        <Button Content="Check status" HorizontalAlignment="Center" Margin="0,374,0,0" VerticalAlignment="Top" FontSize="24" Background="#FFB53636" Click="Button_Click_1" Width="168" FontWeight="Bold" Foreground="#FFF1D0D0"/>
     </Grid>
 </Window>
