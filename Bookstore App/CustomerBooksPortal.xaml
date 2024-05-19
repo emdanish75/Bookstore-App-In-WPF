@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:Bookstore_App"
         mc:Ignorable="d"
         Title="CustomerBooksPortal" Height="640" Width="900">
-    <Grid>
+    <Grid Background="#FF41CA69">
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
-                <Button Content="Logout" Width="100" Margin="10" Click="LogoutButton_Click"/>
-                <Button Content="Show Cart" Width="100" Margin="10" Click="ShowCartButton_Click"/>
-                <Button Content="Show Details" Width="100" Margin="10" Click="ShowDetailsButton_Click"/>
+                <Button Content="Logout" Width="102" Margin="30" Background="#FFB53636" Click="LogoutButton_Click" Height="38"/>
+                <Button Content="Show Cart" Width="100" Margin="30" Background="#FFB53636" Click="ShowCartButton_Click"/>
+                <Button Content="Show Details" Width="100" Margin="30" Background="#FFB53636" Click="ShowDetailsButton_Click"/>
             </StackPanel>
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                 <ItemsControl Name="BooksItemsControl" ItemsSource="{Binding Books}">
@@ -22,14 +22,14 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderBrush="Gray" BorderThickness="1" Margin="5" Padding="10">
+                            <Border BorderBrush="Gray" BorderThickness="1" Margin="50" Padding="10">
                                 <StackPanel Orientation="Vertical">
                                     <Image Source="{Binding Picture}" Width="100" Height="150"/>
                                     <TextBlock Text="{Binding Name}" FontWeight="Bold" Margin="0,5,0,0"/>
                                     <TextBlock Text="{Binding Price, StringFormat='{}{0:C}'}" Margin="0,5,0,10"/>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <Button Content="Add to Cart" Margin="5" Width="80" Command="{Binding DataContext.AddToCartCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}"/>
-                                        <Button Content="Details" Margin="5" Width="80" Command="{Binding DataContext.ShowDetailsCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}"/>
+                                        <Button Content="Add to Cart" Margin="5" Width="80" Background="#FFB53636" Command="{Binding DataContext.AddToCartCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}"/>
+                                        <Button Content="Details" Margin="5" Width="80" Background="#FFB53636" Command="{Binding DataContext.ShowDetailsCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}"/>
                                     </StackPanel>
                                 </StackPanel>
                             </Border>
