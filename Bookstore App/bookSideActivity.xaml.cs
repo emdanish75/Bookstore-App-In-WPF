@@ -22,6 +22,7 @@ namespace Bookstore_App
             InitializeComponent();
             Update_Book.IsEnabled = false;
             deleteButton.IsEnabled = false;
+            detailsButton.IsEnabled = false;
             RefreshAndSort(); // Call method to fetch book titles when the window is initialized
         }
 
@@ -114,6 +115,7 @@ namespace Bookstore_App
             {
                 Update_Book.IsEnabled = true;
                 deleteButton.IsEnabled = true;
+                detailsButton.IsEnabled = true;
                 // Get the selected book title
                 string selectedTitle = bookListView.SelectedItem.ToString();
 
@@ -273,5 +275,59 @@ namespace Bookstore_App
             }
             RefreshAndSort();
         }
+
+        private void detailsButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Check if an item is selected
+            if (bookListView.SelectedItem != null)
+            {
+                string selectedTitle = bookListView.SelectedItem.ToString();
+
+                // Create a BookDetails object to store the details of the selected book
+                BookDetails bookdetails = new BookDetails();
+
+                // Connect to the database and fetch the details of the selected book
+                using (SqlConnection connection = new SqlConnection("Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;"))
+                {
+                    try
+                    {
+                        connection.Open();
+                        string query = "SELECT * FROM books WHERE Title = @Title";
+                        SqlCommand command = new SqlCommand(query, connection);
+                        command.Parameters.AddWithValue("@Title", selectedTitle);
+
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            // Populate the BookDetails object with the fetched details
+                            bookdetails.ID = Convert.ToInt32(reader["BookId"]);
+                            bookdetails.Title = reader["Title"].ToString();
+                            bookdetails.Genre = reader["Genre"].ToString();
+                            bookdetails.Price = Convert.ToInt32(reader["Price"]);
+                            bookdetails.Quantity = Convert.ToInt32(reader["Quantity"]);
+                            bookdetails.Description = reader["Description"].ToString();
+                            bookdetails.ImagePath = reader["imagePath"].ToString();
+                        }
+
+                        reader.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error fetching book details: " + ex.Message);
+                    }
+                }
+
+                // Open ViewDetailsPage and pass the BookDetails object
+                ViewDetailsPage viewDetailsPage = new ViewDetailsPage(bookdetails);
+                this.Close();
+                viewDetailsPage.Show();
+            }
+            else
+            {
+                MessageBox.Show("Please select a book to view details.");
+            }
+        }
+
     }
 }
