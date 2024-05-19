@@ -54,6 +54,8 @@ namespace Bookstore_App
             bookSideActivity.Show();
             this.Close();
         }
+
+
     }
 
 }
