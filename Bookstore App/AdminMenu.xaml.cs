@@ -48,5 +48,12 @@ namespace Bookstore_App
             this.Close();
             viewOrdersAdmin.Show();
         }
+
+        private void bookButton_Copy1_Click(object sender, RoutedEventArgs e)
+        {
+            ViewOrdersAdmin viewOrdersAdmin = new ViewOrdersAdmin();
+            this.Close();
+            viewOrdersAdmin.Show();
+        }
     }
 }
