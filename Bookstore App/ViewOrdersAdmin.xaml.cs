@@ -31,7 +31,16 @@ namespace Bookstore_App
             List<OrderDetails> orders = new List<OrderDetails>();
 
             string connectionString = "Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
-            string query = "SELECT orderID, titles, totalBill, numberOfBooks, paymentImagePath, orderStatus FROM orders";
+            string query = @"
+        SELECT orderID, titles, totalBill, numberOfBooks, paymentImagePath, orderStatus 
+        FROM orders
+        ORDER BY 
+            CASE 
+                WHEN orderStatus = 'Pending' THEN 1 
+                WHEN orderStatus = 'Approved' THEN 2 
+                ELSE 3 
+            END, 
+            orderID"; // Secondary sort by orderID if needed
 
             try
             {
@@ -64,6 +73,7 @@ namespace Bookstore_App
 
             ordersDataGrid.ItemsSource = orders;
         }
+
 
         private void UpdateOrderStatus(string status)
         {
@@ -113,6 +123,15 @@ namespace Bookstore_App
                 UpdateOrderStatus("Disapproved");
             }
         }
+        private void paymentButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ordersDataGrid.SelectedItem is OrderDetails selectedOrder)
+            {
+                PaymentProof paymentProofWindow = new PaymentProof(selectedOrder.PaymentImagePath);
+                paymentProofWindow.Show();
+            }
+        }
+
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
