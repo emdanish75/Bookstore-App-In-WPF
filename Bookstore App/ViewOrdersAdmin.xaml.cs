@@ -41,6 +41,8 @@ namespace Bookstore_App
                 ELSE 3 
             END, 
             orderID"; // Secondary sort by orderID if needed
+            string connectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
+            string query = "SELECT orderID, titles, totalBill, numberOfBooks, paymentImagePath, orderStatus FROM orders";
 
             try
             {
@@ -79,7 +81,7 @@ namespace Bookstore_App
         {
             if (ordersDataGrid.SelectedItem is OrderDetails selectedOrder)
             {
-                string connectionString = "Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
+                string connectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
                 string query = "UPDATE orders SET orderStatus = @status WHERE orderID = @orderID";
 
                 try
