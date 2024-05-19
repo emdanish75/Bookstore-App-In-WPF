@@ -36,5 +36,12 @@ namespace Bookstore_App
             this.Close();
             mainWindow.Show();
         }
+
+        private void customerButton_Click(object sender, RoutedEventArgs e)
+        {
+            ViewCustomerDetails viewCustomerDetail = new ViewCustomerDetails();
+            this.Close();
+            viewCustomerDetail.Show();
+        }
     }
 }
