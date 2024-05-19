@@ -110,6 +110,7 @@ namespace Bookstore_App
                     command.Parameters.AddWithValue("@Gender", gender);
                     command.ExecuteNonQuery();
                     MessageBox.Show("Customer added successfully!");
+                    nextButton.IsEnabled=true;
                 }
                 catch (Exception ex)
                 {
