@@ -17,7 +17,7 @@
                 <DataGridTextColumn Header="Order Status" Binding="{Binding OrderStatus}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="paymentButton" Content="View Payment Proof" HorizontalAlignment="Center" VerticalAlignment="Top" Height="41" Width="176" FontSize="18" Background="#FFE2DC53" Foreground="Black" Margin="0,342,0,0" IsEnabled="False"/>
+        <Button x:Name="paymentButton" Content="View Payment Proof" HorizontalAlignment="Center" VerticalAlignment="Top" Height="41" Width="176" FontSize="18" Background="#FFE2DC53" Foreground="Black" Margin="0,342,0,0" IsEnabled="False" Click="paymentButton_Click"/>
         <Button x:Name="approveButton" Content="Approve" HorizontalAlignment="Center" Margin="0,391,0,0" VerticalAlignment="Top" Height="41" Width="176" FontSize="18" Background="#FF64E253" Foreground="Black" IsEnabled="False" Click="approveButton_Click"/>
         <Button x:Name="disapproveButton" Content="Disapprove" HorizontalAlignment="Center" Margin="0,442,0,0" VerticalAlignment="Top" Height="41" Width="176" FontSize="18" Background="#FFD64A4A" Foreground="Black" IsEnabled="False" Click="disapproveButton_Click"/>
         <Button x:Name="backButton" Content="Back" HorizontalAlignment="Center" Margin="0,494,0,0" VerticalAlignment="Top" Height="41" Width="176" FontSize="18" Background="#FF5397E2" Foreground="Black" Click="backButton_Click"/>
