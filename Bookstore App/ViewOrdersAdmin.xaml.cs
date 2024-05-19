@@ -41,8 +41,7 @@ namespace Bookstore_App
                 ELSE 3 
             END, 
             orderID"; // Secondary sort by orderID if needed
-            string connectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
-            string query = "SELECT orderID, titles, totalBill, numberOfBooks, paymentImagePath, orderStatus FROM orders";
+            
 
             try
             {
