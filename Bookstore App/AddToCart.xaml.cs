@@ -70,6 +70,8 @@ namespace Bookstore_App
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
+       
     }
 
     // RelayCommand class implementation

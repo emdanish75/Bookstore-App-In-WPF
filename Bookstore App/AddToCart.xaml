@@ -7,7 +7,10 @@
         mc:Ignorable="d"
         Title="AddToCart" Height="550" Width="900">
     <Grid>
-        <Grid Background="#FF41CA69"></Grid>
+        <Grid Background="#FF41CA69">
+            <Button Content="Add"  HorizontalAlignment="Left" Margin="799,447,0,0" Width="63" FontSize="16" Background="#FFB53636" FontWeight="Bold" VerticalAlignment="Top" Click="Button_Click"/>
+            <Button Content="Back" HorizontalAlignment="Left" Margin="799,477,0,0" Width="63" FontSize="16" Background="#FFB53636" FontWeight="Bold" VerticalAlignment="Top"/>
+        </Grid>
         <Label Content="Cart View" HorizontalAlignment="Center" Margin="0,42,0,0" VerticalAlignment="Top" FontSize="36" FontWeight="Bold"/>
         <Grid>
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="100">
