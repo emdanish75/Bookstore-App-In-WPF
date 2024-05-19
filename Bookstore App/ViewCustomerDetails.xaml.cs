@@ -23,8 +23,8 @@ namespace Bookstore_App
         private void LoadCustomerData()
         {
             // Replace with your actual connection string
-            string connectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
-            string query = "SELECT CustomerID, Name, Email, Username, City, Contact, Address, Gender FROM Customer";
+            string connectionString = "Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
+            string query = "SELECT CustomerID, Name, Email, Username, City, Contact, Address, Gender FROM customers";
 
             List<Customer> customers = new List<Customer>();
 
