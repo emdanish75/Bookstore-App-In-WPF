@@ -29,8 +29,7 @@ namespace Bookstore_App
         private void LoadOrders()
         {
             List<OrderDetails> orders = new List<OrderDetails>();
-
-            string connectionString = "Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
+            string connectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
             string query = @"
         SELECT orderID, titles, totalBill, numberOfBooks, paymentImagePath, orderStatus 
         FROM orders
@@ -42,7 +41,6 @@ namespace Bookstore_App
             END, 
             orderID"; // Secondary sort by orderID if needed
             
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -74,8 +72,6 @@ namespace Bookstore_App
 
             ordersDataGrid.ItemsSource = orders;
         }
-
-
         private void UpdateOrderStatus(string status)
         {
             if (ordersDataGrid.SelectedItem is OrderDetails selectedOrder)
@@ -132,8 +128,6 @@ namespace Bookstore_App
                 paymentProofWindow.Show();
             }
         }
-
-
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
             AdminMenu adminMenu = new AdminMenu();

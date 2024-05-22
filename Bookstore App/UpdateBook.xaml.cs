@@ -9,7 +9,7 @@ namespace Bookstore_App
     public partial class UpdateBook : Window
     {
         private BookDetails bookDetails;
-        private string connectionString = "Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;"; // Adjust your connection string as needed
+        private string connectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;"; // Adjust your connection string as needed
 
         public UpdateBook(BookDetails bookDetails)
         {

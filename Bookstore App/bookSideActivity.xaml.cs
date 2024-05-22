@@ -34,7 +34,7 @@ namespace Bookstore_App
                 List<string> bookTitles = new List<string>();
 
                 // Connect to the database and fetch book titles
-                using (SqlConnection connection = new SqlConnection("Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;"))
+                using (SqlConnection connection = new SqlConnection("Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;"))
                 {
                     connection.Open();
                     string query = "SELECT Title FROM books";
@@ -71,7 +71,7 @@ namespace Bookstore_App
             try
             {
                 // Connect to the database and fetch book titles
-                using (SqlConnection connection = new SqlConnection("Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;"))
+                using (SqlConnection connection = new SqlConnection("Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;"))
                 {
                     connection.Open();
                     string query = "SELECT Title FROM books";
@@ -125,7 +125,7 @@ namespace Bookstore_App
                 string imagePath = string.Empty;
 
                 // Connect to the database and fetch the details of the selected book
-                using (SqlConnection connection = new SqlConnection("Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;"))
+                using (SqlConnection connection = new SqlConnection("Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;"))
                 {
                     try
                     {
@@ -199,7 +199,7 @@ namespace Bookstore_App
                 BookDetails bookdetails = new BookDetails();
 
                 // Connect to the database and fetch the details of the selected book
-                using (SqlConnection connection = new SqlConnection("Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;"))
+                using (SqlConnection connection = new SqlConnection("Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;"))
                 {
                     try
                     {
@@ -248,7 +248,7 @@ namespace Bookstore_App
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    using (SqlConnection connection = new SqlConnection("Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;"))
+                    using (SqlConnection connection = new SqlConnection("Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;"))
                     {
                         try
                         {

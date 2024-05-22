@@ -121,7 +121,9 @@ namespace Bookstore_App
 
         private void nextButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Open next page");
+            BookCartDetails bookCart = new BookCartDetails();
+            this.Close();
+            bookCart.Show();  
         }
     }
 }
