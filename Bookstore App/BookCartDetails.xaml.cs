@@ -1,16 +1,12 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
-using Microsoft.VisualBasic.Devices;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
+using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 namespace Bookstore_App
 {
-    /// <summary>
-    /// Interaction logic for BookCartDetails.xaml
-    /// </summary>
     public partial class BookCartDetails : Window
     {
         public ObservableCollection<Book> Books { get; set; }
@@ -22,20 +18,44 @@ namespace Bookstore_App
             InitializeComponent();
             DataContext = this;
 
-            // Sample data for books
-            Books = new ObservableCollection<Book>
-            {
-                new Book { Name = "Book 1", Price = 19.99, PicturePath = "C:\\Users\\BISMILLAH COMPUTERS\\Downloads\\ICONS\\latte.jpg" },
-                new Book { Name = "Book 2", Price = 29.99, PicturePath = "C:\\Users\\BISMILLAH COMPUTERS\\Downloads\\ICONS\\cup.png" },
-                new Book { Name = "Book 3", Price = 29.99, PicturePath = "C:\\Users\\BISMILLAH COMPUTERS\\Downloads\\ICONS\\images (1).png" },
-                new Book { Name = "Book 4", Price = 29.99, PicturePath = "C:\\Users\\BISMILLAH COMPUTERS\\Downloads\\ICONS\\staff.png" },
-                new Book { Name = "Book 5", Price = 29.99, PicturePath = "C:\\Users\\BISMILLAH COMPUTERS\\Downloads\\ICONS\\espresso.png" },
-
-                // Add more books as needed
-            };
+            Books = new ObservableCollection<Book>(); // Initialize the ObservableCollection
 
             AddToCartCommand = new RelayCommand<Book>(AddToCart);
             ShowDetailsCommand = new RelayCommand<Book>(ShowDetails);
+
+            LoadBooks(); // Load books from the database
+        }
+
+        private void LoadBooks()
+        {
+            string connectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
+            string query = "SELECT title, price, imagePath FROM books";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    SqlCommand command = new SqlCommand(query, connection);
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        string title = reader.GetString(0);
+                        double price = reader.GetInt32(1);
+                        string imagePath = reader.GetString(2);
+
+                        Books.Add(new Book { Name = title, Price = price, PicturePath = imagePath });
+                    }
+
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error fetching books: " + ex.Message);
+            }
         }
 
         private void AddToCart(Book book)
@@ -53,7 +73,6 @@ namespace Bookstore_App
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Close();
-
         }
 
         private void ShowCartButton_Click(object sender, RoutedEventArgs e)
@@ -67,6 +86,7 @@ namespace Bookstore_App
         }
     }
 
+    // Book class remains unchanged
     public class Book
     {
         public string Name { get; set; }
@@ -87,7 +107,6 @@ namespace Bookstore_App
                     }
                     catch (Exception ex)
                     {
-                        // Handle the exception (e.g., log it, show a default image, etc.)
                         MessageBox.Show($"Error loading image: {ex.Message}");
                         picture = new BitmapImage(); // You could set this to a default image URI if you have one
                     }
@@ -96,7 +115,6 @@ namespace Bookstore_App
             }
         }
     }
-
     public class RelayCommand<T> : ICommand
     {
         private readonly Action<T> _execute;
@@ -124,4 +142,5 @@ namespace Bookstore_App
             remove { CommandManager.RequerySuggested -= value; }
         }
     }
+    // RelayCommand class remains unchanged
 }
