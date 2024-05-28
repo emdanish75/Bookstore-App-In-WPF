@@ -11,7 +11,6 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
                 <Button Content="Logout" Width="100" Margin="10" Click="LogoutButton_Click"/>
                 <Button Content="Show Cart" Width="100" Margin="10" Click="ShowCartButton_Click"/>
-                <Button Content="View Orders" Width="100" Margin="10" Click="ViewOrdersButton_Click"/>
             </StackPanel>
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                 <ItemsControl Name="BooksItemsControl" ItemsSource="{Binding Books}">

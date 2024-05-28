@@ -6,21 +6,20 @@ namespace Bookstore_App
 {
     public partial class CustomerDiaglog : Window
     {
-        private const string connectionString = "Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
+        private const string connectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
         private string nameC;
         private string emailC;
         private string usernameC;
         private int customerID;
 
-        public CustomerDiaglog(string name, string email, string username, int userID)
+        public CustomerDiaglog(string name, string email, string username , int userID)
         {
             InitializeComponent();
             nameC = name;
             emailC = email;
             usernameC = username;
             customerID = userID;
-            nextButton.IsEnabled = false;
-
+            nextButton.IsEnabled = false;   
             // Check if customer details are already present for the given username
             CheckCustomerDetails();
         }
@@ -119,9 +118,9 @@ namespace Bookstore_App
 
         private void nextButton_Click(object sender, RoutedEventArgs e)
         {
-            BookCartDetails bookCart = new BookCartDetails(customerID);
+            BookCartDetails bookCart = new BookCartDetails(customerID);  // Pass customerID
             this.Close();
-            bookCart.Show();  
+            bookCart.Show();
         }
     }
 }
