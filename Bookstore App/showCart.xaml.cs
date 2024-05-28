@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Windows;
 
 namespace Bookstore_App
@@ -22,7 +23,7 @@ namespace Bookstore_App
         private void LoadCartItems()
         {
             string connectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
-            string query = "SELECT b.title FROM cart c JOIN books b ON c.bookID = b.bookID WHERE c.customerID = @customerID";
+            string query = "SELECT b.title, b.price FROM cart c JOIN books b ON c.bookID = b.bookID WHERE c.customerID = @customerID";
 
             try
             {
@@ -37,7 +38,8 @@ namespace Bookstore_App
                     {
                         CartItems.Add(new CartItem
                         {
-                            Title = reader.GetString(0).Trim()
+                            Title = reader.GetString(0).Trim(),
+                            Price = reader.GetInt32(1)
                         });
                     }
                     reader.Close();
@@ -75,10 +77,15 @@ namespace Bookstore_App
                 }
             }
         }
+
         private void CheckoutButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Checkout functionality not implemented.");
+            int totalBill = CartItems.Sum(item => item.Price);
+            Checkout checkout = new Checkout(customerId, totalBill);
+            checkout.Show();
+            this.Close();
         }
+
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
             string connectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
@@ -118,5 +125,6 @@ namespace Bookstore_App
     public class CartItem
     {
         public string Title { get; set; }
+        public int Price { get; set; }
     }
 }
