@@ -22,7 +22,6 @@ namespace Bookstore_App
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                Filter = "Image Files|.jpg;.jpeg;.png;.bmp;*.gif",
                 Title = "Select a Payment Proof"
             };
 
