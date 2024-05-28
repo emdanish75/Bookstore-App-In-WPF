@@ -61,7 +61,9 @@ namespace Bookstore_App
 
         private void AddToCart(Book book)
         {
-            MessageBox.Show($"{book.Name} added to cart.");
+            BookDetails bookDetails = FetchBookDetailsFromDatabase(book.Name);
+            AddToCartButton addToCartButton = new AddToCartButton(bookDetails);
+            addToCartButton.Show();
         }
 
         private void ShowDetails(Book book)
