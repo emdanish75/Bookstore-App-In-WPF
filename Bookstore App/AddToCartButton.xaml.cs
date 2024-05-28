@@ -6,7 +6,7 @@ namespace Bookstore_App
 {
     public partial class AddToCartButton : Window
     {
-        private const string connectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
+        private const string connectionString = "Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
         private BookDetails bookDetails;
         private int customerID;
         private int counter = 1;

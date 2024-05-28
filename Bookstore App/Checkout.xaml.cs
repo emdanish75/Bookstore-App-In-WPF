@@ -19,16 +19,30 @@ namespace Bookstore_App
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                Title = "Select a Payment Proof"
+                Title = "Select a Payment Proof",
+                Filter = "Image Files|*.jpg;*.jpeg;*.png",
+                FilterIndex = 1,
+                RestoreDirectory = true
             };
             if (openFileDialog.ShowDialog() == true)
             {
-                // Assuming the file upload process happens here.
-                uploadSuccessLabel.Visibility = Visibility.Visible;
-                uploadButton.Visibility = Visibility.Collapsed;
-                checkoutButton.IsEnabled = true;
+                string selectedFile = openFileDialog.FileName;
+                string fileExtension = System.IO.Path.GetExtension(selectedFile).ToLower();
+
+                if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".png")
+                {
+                    uploadSuccessLabel.Visibility = Visibility.Visible;
+                    uploadButton.Visibility = Visibility.Collapsed;
+                    checkoutButton.IsEnabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Invalid image format. Please choose a jpg or png file.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
+
+
         private void CheckoutButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Checkout successful!");
