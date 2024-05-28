@@ -6,7 +6,7 @@ namespace Bookstore_App
 {
     public partial class CustomerDiaglog : Window
     {
-        private const string connectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
+        private const string connectionString = "Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
         private string nameC;
         private string emailC;
         private string usernameC;
@@ -34,7 +34,7 @@ namespace Bookstore_App
                 try
                 {
                     connection.Open();
-                    string query = "SELECT city, contact, address, gender FROM customer WHERE username = @Username";
+                    string query = "SELECT city, contact, address, gender FROM customers WHERE username = @Username";
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@Username", usernameC);
 
@@ -98,7 +98,7 @@ namespace Bookstore_App
                 try
                 {
                     connection.Open();
-                    string query = "INSERT INTO customer (customerID, name, email, username, city, contact, address, gender) VALUES (@CustomerID, @Name, @Email, @Username, @City, @Contact, @Address, @Gender)";
+                    string query = "INSERT INTO customers (customerID, name, email, username, city, contact, address, gender) VALUES (@CustomerID, @Name, @Email, @Username, @City, @Contact, @Address, @Gender)";
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@CustomerID", customerID);
                     command.Parameters.AddWithValue("@Name", nameC);

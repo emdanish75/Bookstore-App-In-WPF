@@ -29,7 +29,7 @@ namespace Bookstore_App
         private void LoadOrders()
         {
             List<OrderDetails> orders = new List<OrderDetails>();
-            string connectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
+            string connectionString = "Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
             string query = @"
         SELECT orderID, titles, totalBill, numberOfBooks, paymentImagePath, orderStatus 
         FROM orders
@@ -76,7 +76,7 @@ namespace Bookstore_App
         {
             if (ordersDataGrid.SelectedItem is OrderDetails selectedOrder)
             {
-                string connectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
+                string connectionString = "Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
                 string query = "UPDATE orders SET orderStatus = @status WHERE orderID = @orderID";
 
                 try

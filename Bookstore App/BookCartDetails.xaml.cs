@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Input;
@@ -28,7 +29,7 @@ namespace Bookstore_App
 
         private void LoadBooks()
         {
-            string connectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
+            string connectionString = "Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
             string query = "SELECT title, price, imagePath FROM books";
 
             try
@@ -65,7 +66,52 @@ namespace Bookstore_App
 
         private void ShowDetails(Book book)
         {
-            MessageBox.Show($"Showing details for {book.Name}.");
+            BookDetails bookDetails = FetchBookDetailsFromDatabase(book.Name);
+            if (bookDetails != null)
+            {
+                ViewBookDetailsCustomerSide viewDetailsPage = new ViewBookDetailsCustomerSide(bookDetails);
+                viewDetailsPage.Show();
+            }
+        }
+
+        private BookDetails FetchBookDetailsFromDatabase(string bookTitle)
+        {
+            string connectionString = "Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
+            string query = "SELECT title, genre, quantity, price, description, imagePath FROM books WHERE title = @title";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@title", bookTitle);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                return new BookDetails
+                                {
+                                    Title = reader.GetString(0),
+                                    Genre = reader.GetString(1),
+                                    Quantity = reader.GetInt32(2),
+                                    Price = reader.GetInt32(3),
+                                    Description = reader.GetString(4),
+                                    ImagePath = reader.GetString(5)
+                                };
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error fetching book details: " + ex.Message);
+            }
+            return null;
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
@@ -80,9 +126,9 @@ namespace Bookstore_App
             MessageBox.Show("Showing cart.");
         }
 
-        private void ShowDetailsButton_Click(object sender, RoutedEventArgs e)
+        private void ViewOrdersButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Showing details.");
+            MessageBox.Show("Viewing orders.");
         }
     }
 
