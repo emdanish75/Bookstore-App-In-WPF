@@ -11,26 +11,28 @@ namespace Bookstore_App
     public partial class BookCartDetails : Window
     {
         public ObservableCollection<Book> Books { get; set; }
-        public ICommand AddToCartCommand { get; set; }
-        public ICommand ShowDetailsCommand { get; set; }
+    public ICommand AddToCartCommand { get; set; }
+    public ICommand ShowDetailsCommand { get; set; }
+    private int customerID;
 
-        public BookCartDetails()
-        {
-            InitializeComponent();
-            DataContext = this;
+    public BookCartDetails(int userID)
+    {
+        InitializeComponent();
+        DataContext = this;
+        customerID = userID;
 
-            Books = new ObservableCollection<Book>(); // Initialize the ObservableCollection
+        Books = new ObservableCollection<Book>();
 
-            AddToCartCommand = new RelayCommand<Book>(AddToCart);
-            ShowDetailsCommand = new RelayCommand<Book>(ShowDetails);
+        AddToCartCommand = new RelayCommand<Book>(AddToCart);
+        ShowDetailsCommand = new RelayCommand<Book>(ShowDetails);
 
-            LoadBooks(); // Load books from the database
-        }
+        LoadBooks();
+    }
 
         private void LoadBooks()
         {
             string connectionString = "Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
-            string query = "SELECT title, price, imagePath FROM books";
+            string query = "SELECT title, price, imagePath FROM books WHERE quantity >= 1";
 
             try
             {
@@ -44,7 +46,7 @@ namespace Bookstore_App
                     while (reader.Read())
                     {
                         string title = reader.GetString(0);
-                        double price = reader.GetInt32(1);
+                        double price = reader.GetInt32(1);  // Changed to GetDouble to match the data type
                         string imagePath = reader.GetString(2);
 
                         Books.Add(new Book { Name = title, Price = price, PicturePath = imagePath });
@@ -59,12 +61,14 @@ namespace Bookstore_App
             }
         }
 
+
         private void AddToCart(Book book)
         {
             BookDetails bookDetails = FetchBookDetailsFromDatabase(book.Name);
-            AddToCartButton addToCartButton = new AddToCartButton(bookDetails);
+            AddToCartButton addToCartButton = new AddToCartButton(bookDetails, customerID);  // Pass customerID
             addToCartButton.Show();
         }
+
 
         private void ShowDetails(Book book)
         {

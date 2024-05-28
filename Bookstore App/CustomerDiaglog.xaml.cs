@@ -12,16 +12,14 @@ namespace Bookstore_App
         private string usernameC;
         private int customerID;
 
-        public CustomerDiaglog(string name, string email, string username)
+        public CustomerDiaglog(string name, string email, string username, int userID)
         {
             InitializeComponent();
             nameC = name;
             emailC = email;
             usernameC = username;
-            nextButton.IsEnabled = false;   
-            // Generate a random 4-digit integer for customerID
-            Random rand = new Random();
-            customerID = rand.Next(1000, 9999);
+            customerID = userID;
+            nextButton.IsEnabled = false;
 
             // Check if customer details are already present for the given username
             CheckCustomerDetails();
@@ -121,7 +119,7 @@ namespace Bookstore_App
 
         private void nextButton_Click(object sender, RoutedEventArgs e)
         {
-            BookCartDetails bookCart = new BookCartDetails();
+            BookCartDetails bookCart = new BookCartDetails(customerID);
             this.Close();
             bookCart.Show();  
         }
