@@ -32,7 +32,7 @@ namespace Bookstore_App
 
         private void LoadBooks()
         {
-            string connectionString = "Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
+            string connectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
             string query = "SELECT title, price, imagePath FROM books WHERE quantity >= 1";
 
             try
@@ -81,7 +81,7 @@ namespace Bookstore_App
 
         private BookDetails FetchBookDetailsFromDatabase(string bookTitle)
         {
-            string connectionString = "Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
+            string connectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
             string query = "SELECT title, genre, quantity, price, description, imagePath FROM books WHERE title = @title";
 
             try

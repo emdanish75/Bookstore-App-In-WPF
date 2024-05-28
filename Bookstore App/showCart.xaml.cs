@@ -22,7 +22,7 @@ namespace Bookstore_App
 
         private void LoadCartItems()
         {
-            string connectionString = "Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
+            string connectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
             string query = "SELECT b.title, b.price FROM cart c JOIN books b ON c.bookID = b.bookID WHERE c.customerID = @customerID";
 
             try
@@ -88,7 +88,7 @@ namespace Bookstore_App
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
-            string connectionString = "Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
+            string connectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
             string query = "DELETE FROM cart WHERE customerID = @customerID";
 
             try

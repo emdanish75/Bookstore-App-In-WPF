@@ -41,11 +41,10 @@ namespace Bookstore_App
                 }
             }
         }
-
-
         private void CheckoutButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Checkout successful!");
+            CheckStatus checkStatus = new CheckStatus(customerId);
+            checkStatus.Show();
             this.Close();
         }
     }
