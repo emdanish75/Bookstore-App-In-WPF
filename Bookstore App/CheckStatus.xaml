@@ -8,11 +8,17 @@
         Title="CheckStatus" Height="450" Width="800">
     <Grid Background="#FF41CA69">
         <Label Content="Check status" HorizontalAlignment="Center" Margin="0,51,0,0" VerticalAlignment="Top" FontSize="42" FontWeight="Bold"/>
-        <Label Name="StatusLabel" Content="Pending"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="Bold"/>
 
 
         <Button Content="Download" Margin="228,348,441,44" Background="#FFB53636" FontSize="24" Click="DownloadButton_Click"  FontWeight="Bold" Foreground="#FFF1D0D0"/>
         <Button Content="Back" Margin="421,348,241,42" Background="#FFB53636" FontSize="24" Click="BackButton_Click"  FontWeight="Bold" Foreground="#FFF1D0D0"/>
+        <ListView x:Name="bookList" Margin="261,140,271,140" FontWeight="Bold" FontSize="16" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </Grid>
 </Window>
