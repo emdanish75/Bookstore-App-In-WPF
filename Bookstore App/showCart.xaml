@@ -1,0 +1,24 @@
+﻿<Window x:Class="Bookstore_App.showCart"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bookstore_App"
+        mc:Ignorable="d"
+        Title="showCart" Height="450" Width="800">
+    <Grid>
+        <Grid Background="#FF41CA69">
+            <Button x:Name="removeItemButton" Content="Remove Item"  HorizontalAlignment="Left" Margin="556,153,0,0" Width="154" FontSize="22" Background="#FFB53636" FontWeight="Bold" VerticalAlignment="Top" Click="RemoveButton_Click" Height="36" Foreground="#FFF3DFDF"/>
+            <Button x:Name="checkoutButton" Content="Checkout"  HorizontalAlignment="Left" Margin="556,214,0,0" Width="154" FontSize="22" Background="#FFB53636" FontWeight="Bold" VerticalAlignment="Top" Click="CheckoutButton_Click" Height="36" Foreground="#FFEDD6D6"/>
+            <Button x:Name="clearButton" Content="Clear"  HorizontalAlignment="Left" Margin="556,272,0,0" Width="154" FontSize="22" Background="#FFB53636" FontWeight="Bold" VerticalAlignment="Top" Click="ClearButton_Click" Height="36" Foreground="#FFF4E9E9"/>
+            <Button x:Name="backButton" Content="Back"  HorizontalAlignment="Left" Margin="617,367,0,0" Width="154" FontSize="22" Background="#FF3B42AF" FontWeight="Bold" VerticalAlignment="Top" Click="BackButton_Click" Height="36" Foreground="#FFEDD6D6"/>
+            <ListView x:Name="ItemList" Margin="52,100,511,70" FontSize="22" SelectionChanged="ItemList_SelectionChanged">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </Grid>
+</Window>

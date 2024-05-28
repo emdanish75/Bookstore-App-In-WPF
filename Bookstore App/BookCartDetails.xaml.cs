@@ -129,7 +129,9 @@ namespace Bookstore_App
 
         private void ShowCartButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Showing cart.");
+            showCart showCart = new showCart(customerID);
+            showCart.Show();
+            this.Close();
         }
 
         private void ViewOrdersButton_Click(object sender, RoutedEventArgs e)
