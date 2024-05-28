@@ -20,10 +20,6 @@ namespace Bookstore_App
             usernameC = username;
             customerID = userID;
             nextButton.IsEnabled = false;   
-            // Generate a random 4-digit integer for customerID
-            Random rand = new Random();
-            customerID = rand.Next(1000, 9999);
-
             // Check if customer details are already present for the given username
             CheckCustomerDetails();
         }

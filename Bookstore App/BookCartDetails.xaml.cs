@@ -20,6 +20,7 @@ namespace Bookstore_App
         {
             InitializeComponent();
             DataContext = this;
+            this.customerID = customerID;
 
             Books = new ObservableCollection<Book>(); // Initialize the ObservableCollection
 
@@ -127,7 +128,8 @@ namespace Bookstore_App
 
         private void ShowCartButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Showing cart.");
+            showCart showCart = new showCart(customerID);
+            showCart.Show();
         }
 
         private void ViewOrdersButton_Click(object sender, RoutedEventArgs e)
