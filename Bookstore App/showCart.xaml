@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bookstore_App"
         mc:Ignorable="d"
-        Title="showCart" Height="450" Width="800">
+        Title="showCart" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid Background="#FF41CA69">
             <Button x:Name="removeItemButton" Content="Remove Item"  HorizontalAlignment="Left" Margin="556,153,0,0" Width="154" FontSize="22" Background="#FFB53636" FontWeight="Bold" VerticalAlignment="Top" Click="RemoveButton_Click" Height="36" Foreground="#FFF3DFDF"/>
