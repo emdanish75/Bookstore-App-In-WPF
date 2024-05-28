@@ -6,7 +6,7 @@ namespace Bookstore_App
 {
     public partial class MainWindow : Window
     {
-        private const string ConnectionString = "Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
+        private const string ConnectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
         string name;
         string email;
         string usernamee;
@@ -118,7 +118,7 @@ namespace Bookstore_App
                     connection.Open();
 
                     // Prepare SQL statement
-                    string sql = "SELECT COUNT(*), role, name, email FROM users WHERE username = @Username AND password = @Password GROUP BY role, name, email";
+                    string sql = "SELECT userID, role, name, email FROM users WHERE username = @Username AND password = @Password";
 
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
@@ -129,41 +129,34 @@ namespace Bookstore_App
                         {
                             if (reader.Read())
                             {
-                                int count = reader.GetInt32(0);
-                                string role = reader.GetString(1).Trim(); // Ensure to trim any whitespace characters
+                                int userID = reader.GetInt32(0);
+                                string role = reader.GetString(1).Trim();
                                 string name = reader.IsDBNull(2) ? string.Empty : reader.GetString(2).Trim();
                                 string email = reader.IsDBNull(3) ? string.Empty : reader.GetString(3).Trim();
 
-                                if (count > 0)
+                                if (role == "Admin" && isAdminChecked)
                                 {
-                                    if (role == "Admin" && isAdminChecked)
-                                    {
-                                        MessageBox.Show("Login successful!");
+                                    MessageBox.Show("Login successful!");
 
-                                        // Open AdminMenu window
-                                        AdminMenu adminMenu = new AdminMenu();
-                                        adminMenu.Show();
-                                        // Close MainWindow
-                                        this.Close();
-                                    }
-                                    else if (role == "Customer" && isCustomerChecked)
-                                    {
-                                        MessageBox.Show("Login successful!");
+                                    // Open AdminMenu window
+                                    AdminMenu adminMenu = new AdminMenu();
+                                    adminMenu.Show();
+                                    // Close MainWindow
+                                    this.Close();
+                                }
+                                else if (role == "Customer" && isCustomerChecked)
+                                {
+                                    MessageBox.Show("Login successful!");
 
-                                        // Open CustomerDiaglog window
-                                        CustomerDiaglog customerDiaglog = new CustomerDiaglog(name, email, username);
-                                        customerDiaglog.Show();
-                                        // Close MainWindow
-                                        this.Close();
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Role mismatch. Please select the correct role.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                                    }
+                                    // Open CustomerDiaglog window
+                                    CustomerDiaglog customerDiaglog = new CustomerDiaglog(name, email, username, userID);
+                                    customerDiaglog.Show();
+                                    // Close MainWindow
+                                    this.Close();
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Invalid username or password.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    MessageBox.Show("Role mismatch. Please select the correct role.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                                 }
                             }
                             else

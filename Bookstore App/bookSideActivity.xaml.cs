@@ -34,7 +34,7 @@ namespace Bookstore_App
                 List<string> bookTitles = new List<string>();
 
                 // Connect to the database and fetch book titles
-                using (SqlConnection connection = new SqlConnection("Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;"))
+                using (SqlConnection connection = new SqlConnection("Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;"))
                 {
                     connection.Open();
                     string query = "SELECT Title FROM books";

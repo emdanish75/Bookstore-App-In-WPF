@@ -13,8 +13,10 @@ namespace Bookstore_App
         public ObservableCollection<Book> Books { get; set; }
         public ICommand AddToCartCommand { get; set; }
         public ICommand ShowDetailsCommand { get; set; }
+       
+        private int customerID;
 
-        public BookCartDetails()
+        public BookCartDetails(int customerID)
         {
             InitializeComponent();
             DataContext = this;
@@ -29,8 +31,8 @@ namespace Bookstore_App
 
         private void LoadBooks()
         {
-            string connectionString = "Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
-            string query = "SELECT title, price, imagePath FROM books";
+            string connectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
+            string query = "SELECT title, price, imagePath FROM books WHERE quantity >= 1";
 
             try
             {
@@ -44,7 +46,7 @@ namespace Bookstore_App
                     while (reader.Read())
                     {
                         string title = reader.GetString(0);
-                        double price = reader.GetInt32(1);
+                        double price = reader.GetInt32(1);  // Changed to GetDouble to match the data type
                         string imagePath = reader.GetString(2);
 
                         Books.Add(new Book { Name = title, Price = price, PicturePath = imagePath });
@@ -61,7 +63,9 @@ namespace Bookstore_App
 
         private void AddToCart(Book book)
         {
-            MessageBox.Show($"{book.Name} added to cart.");
+            BookDetails bookDetails = FetchBookDetailsFromDatabase(book.Name);
+            AddToCartButton addToCartButton = new AddToCartButton(bookDetails, customerID);  // Pass customerID
+            addToCartButton.Show();
         }
 
         private void ShowDetails(Book book)
@@ -76,7 +80,7 @@ namespace Bookstore_App
 
         private BookDetails FetchBookDetailsFromDatabase(string bookTitle)
         {
-            string connectionString = "Data Source=DANISH-HP-LAPTO\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
+            string connectionString = "Data Source=DEVELOPER-966\\SQLEXPRESS;Initial Catalog=projectdb;Integrated Security=True;";
             string query = "SELECT title, genre, quantity, price, description, imagePath FROM books WHERE title = @title";
 
             try
