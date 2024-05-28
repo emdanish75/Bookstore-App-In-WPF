@@ -11,9 +11,9 @@
         <Label Content="Total Bill:" FontSize="16" VerticalAlignment="Top" Height="41" Margin="216,134,479,0"/>
         <Label x:Name="totalBillLabel" Content="-" FontSize="16" VerticalAlignment="Top" Height="41" Margin="369,134,326,0"/>
         <Label Content="Add Your Payment Screenshot:" FontSize="16" VerticalAlignment="Top" Height="34" Margin="68,251,479,0"/>
-        <Button x:Name="uploadButton" Content="Upload" Margin="369,251,234,149" FontSize="16" Background="#FFB53636" Click="UploadButton_Click"/>
-        <Label x:Name="uploadSuccessLabel" Content="Payment proof uploaded successfully!" FontSize="16" VerticalAlignment="Top" Height="34" Margin="369,252,178,0" Visibility="Collapsed"/>
-        <Button x:Name="checkoutButton" Content="Checkout" Width="152" Background="#FFB53636" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="316,366,0,0" FontSize="16" Click="CheckoutButton_Click" Height="58" IsEnabled="False"/>
+        <Button x:Name="uploadButton" Content="Upload" Margin="369,251,229,132" FontSize="16" Background="#FFB53636" Click="UploadButton_Click"/>
+        <Label x:Name="uploadSuccessLabel" Content="Payment proof uploaded successfully!" FontSize="16" VerticalAlignment="Top" Height="35" Margin="369,251,126,0" Visibility="Collapsed"/>
+        <Button x:Name="checkoutButton" Content="Checkout" Width="152" Background="#FFB53636" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="316,346,0,0" FontSize="16" Click="CheckoutButton_Click" Height="58" IsEnabled="False"/>
     </Grid>
 
 
