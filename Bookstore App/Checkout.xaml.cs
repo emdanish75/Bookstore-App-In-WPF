@@ -2,14 +2,12 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
-
 namespace Bookstore_App
 {
     public partial class Checkout : Window
     {
         private int customerId;
         private int totalBill;
-
         public Checkout(int customerId, int totalBill)
         {
             InitializeComponent();
@@ -17,14 +15,12 @@ namespace Bookstore_App
             this.totalBill = totalBill;
             totalBillLabel.Content = $"${totalBill}";
         }
-
         private void UploadButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 Title = "Select a Payment Proof"
             };
-
             if (openFileDialog.ShowDialog() == true)
             {
                 // Assuming the file upload process happens here.
@@ -33,7 +29,6 @@ namespace Bookstore_App
                 checkoutButton.IsEnabled = true;
             }
         }
-
         private void CheckoutButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Checkout successful!");
